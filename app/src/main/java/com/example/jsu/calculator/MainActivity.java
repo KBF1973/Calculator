@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            btnClear, btnSquare, btnPercent, btnEquals, btnSigned;
 
     TextView showValue;
-    BigDecimal inputOne;
-    BigDecimal inputTwo;
+    double inputOne;
+    double inputTwo;
+    double firstInput;
+    double secondInput;
     boolean add, sub, mul, div, dec;
     DecimalFormat decimal;
     boolean decimalPoint;
@@ -141,75 +143,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnDivision:
-                inputOne = new BigDecimal(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText() + "");
+                firstInput = inputOne;
                 div = true;
                 dec = false;
-                showValue.setText(null);
+                showValue.setText("");
+                inputOne = 0;
                 break;
 
             case R.id.btnMultiplication:
-                inputOne = new BigDecimal(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText() + "");
+                firstInput = inputOne;
                 mul = true;
                 dec = false;
-                showValue.setText(null);
+                showValue.setText("");
+                inputOne = 0;
                 break;
 
             case R.id.btnSubtraction:
-                inputOne = new BigDecimal(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText() + "");
+                firstInput = inputOne;
                 sub = true;
                 dec = false;
-                showValue.setText(null);
+                showValue.setText("");
+                inputOne = 0;
                 break;
 
             case R.id.btnAddition:
-                inputOne = new BigDecimal(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText() + "");
+                firstInput = inputOne;
                 add = true;
                 dec = false;
-                showValue.setText(null);
+                showValue.setText("");
+                inputOne = 0;
                 break;
 
             case R.id.btnClear:
-                showValue.setText(null);
+                showValue.setText("");
+
                 dec = false;
                 break;
 
             case R.id.btnSquare:
-                inputOne = new BigDecimal(showValue.getText() + "");
-                Double sqrSolution = (Math.sqrt(inputOne.doubleValue()));
-                showValue.setText(decimal.format(sqrSolution));
+                inputOne = Math.sqrt(Double.parseDouble(showValue.getText() + ""));
+
+                showValue.setText(inputOne + "");
+
                 dec = false;
                 break;
 
              case R.id.btnPercent:
-                inputOne = new BigDecimal(showValue.getText() + "");
-                showValue.setText(decimal.format(inputOne.doubleValue() / 100));
+                inputOne = Double.parseDouble(showValue.getText() + "");
+                double temp = inputOne/100;
+                showValue.setText(temp + "");
                 dec = false;
                 break;
 
             case R.id.btnEquals:
-                inputTwo = new BigDecimal(showValue.getText() + "");
+                inputTwo = Double.parseDouble(showValue.getText() + "");
+                secondInput = inputTwo;
                 dec = false;
 
                 if(add){
-                    double addSolution = (inputOne.doubleValue() + inputTwo.doubleValue());
+                    double addSolution = (firstInput + secondInput);
                     showValue.setText(decimal.format(addSolution));
                     add = false;
                 }
 
                 if(sub){
-                    double subSolution = (inputOne.doubleValue() - inputTwo.doubleValue());
+                    double subSolution = (firstInput - secondInput);
                     showValue.setText(decimal.format(subSolution));
                     sub = false;
                 }
 
                 if(mul){
-                    double mulSolution = (inputOne.doubleValue() * inputTwo.doubleValue());
+                    double mulSolution = (firstInput * secondInput);
                     showValue.setText(decimal.format(mulSolution));
                     mul = false;
                 }
 
                 if(div){
-                    double divSolution = (inputOne.doubleValue()/inputTwo.doubleValue());
+                    double divSolution = (firstInput / secondInput);
                     showValue.setText(decimal.format(divSolution));
                     div = false;
                 }
@@ -217,8 +231,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnSigned:
-                showValue.append(btnSigned.getText() + "");
-                break;
+                try {
+                    showValue.append("-");
+                    break;
+
+                }
+                catch (Exception e){}
+
 
             }
 
