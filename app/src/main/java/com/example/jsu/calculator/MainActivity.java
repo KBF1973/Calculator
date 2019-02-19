@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btnDecimal:
                 if(dec) {
-
+                //do nothing - prohibits additional decimals from being entered
                 }
                 else{
                     showValue.append(btnDecimal.getText() + "");
@@ -202,7 +202,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnEquals:
                 inputTwo = Double.parseDouble(showValue.getText() + "");
                 secondInput = inputTwo;
-                dec = false;
 
                 if(add){
                     double addSolution = (firstInput + secondInput);
@@ -231,19 +230,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnSigned:
-                try {
+
                     showValue.append("-");
                     break;
 
                 }
-                catch (Exception e){}
 
 
             }
-
-
-        }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
