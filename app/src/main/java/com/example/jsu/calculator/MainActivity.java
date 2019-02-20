@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.lang.Math;
 
@@ -19,17 +16,15 @@ import java.lang.Math;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnDecimal, btnDivision, btnMultiplication, btnSubtraction, btnAddition,
-           btnClear, btnSquare, btnPercent, btnEquals, btnSigned;
+            btnClear, btnSquare, btnPercent, btnEquals, btnSigned;
 
     TextView showValue;
     double inputOne;
     double inputTwo;
     double firstInput;
     double secondInput;
-    boolean add, sub, mul, div, dec;
+    boolean add, sub, mul, div, dec, sin;
     DecimalFormat decimal;
-    boolean decimalPoint;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,17 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("SetTextI18n")
     public void onClick(View view){
 
-        decimalPoint = false;
-
         switch(view.getId()){
 
             case R.id.btn0:
-               showValue.append(btn0.getText() + "");
-               break;
+                showValue.append(btn0.getText() + "");
+                break;
 
             case R.id.btn1:
-               showValue.append(btn1.getText() + "");
-               break;
+                showValue.append(btn1.getText() + "");
+                break;
 
             case R.id.btn2:
                 showValue.append(btn2.getText() + "");
@@ -134,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btnDecimal:
                 if(dec) {
-                //do nothing - prohibits additional decimals from being entered
+                    //do nothing - prohibits additional decimals from being entered
                 }
                 else{
                     showValue.append(btnDecimal.getText() + "");
@@ -147,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 firstInput = inputOne;
                 div = true;
                 dec = false;
+                sin = false;
                 showValue.setText("");
-                inputOne = 0;
                 break;
 
             case R.id.btnMultiplication:
@@ -156,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 firstInput = inputOne;
                 mul = true;
                 dec = false;
+                sin = false;
                 showValue.setText("");
-                inputOne = 0;
                 break;
 
             case R.id.btnSubtraction:
@@ -165,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 firstInput = inputOne;
                 sub = true;
                 dec = false;
+                sin = false;
                 showValue.setText("");
-                inputOne = 0;
                 break;
 
             case R.id.btnAddition:
@@ -174,29 +167,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 firstInput = inputOne;
                 add = true;
                 dec = false;
+                sin = false;
                 showValue.setText("");
-                inputOne = 0;
                 break;
 
             case R.id.btnClear:
                 showValue.setText("");
-
                 dec = false;
+                sin = false;
                 break;
 
             case R.id.btnSquare:
                 inputOne = Math.sqrt(Double.parseDouble(showValue.getText() + ""));
-
                 showValue.setText(inputOne + "");
-
                 dec = false;
+                sin = false;
                 break;
 
-             case R.id.btnPercent:
+            case R.id.btnPercent:
                 inputOne = Double.parseDouble(showValue.getText() + "");
                 double temp = inputOne/100;
                 showValue.setText(temp + "");
                 dec = false;
+                sin = false;
+                break;
+
+            case R.id.btnSigned:
+
+                if(sin){
+
+                }
+                else {
+                    showValue.append("-");
+                    sin = true;
+                }
                 break;
 
             case R.id.btnEquals:
@@ -229,15 +233,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
 
-            case R.id.btnSigned:
-
-                    showValue.append("-");
-                    break;
-
-                }
+        }
 
 
-            }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
