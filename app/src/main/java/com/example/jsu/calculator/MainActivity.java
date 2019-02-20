@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         showValue = findViewById(R.id.inputOutput);
-        decimal = new DecimalFormat("#.#######################");
+        decimal = new DecimalFormat("#.##########");
 
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
@@ -86,43 +86,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
 
             case R.id.btn0:
-                showValue.append(btn0.getText() + "");
+                showValue.append(btn0.getText().toString());
                 break;
 
             case R.id.btn1:
-                showValue.append(btn1.getText() + "");
+                showValue.append(btn1.getText().toString());
                 break;
 
             case R.id.btn2:
-                showValue.append(btn2.getText() + "");
+                showValue.append(btn2.getText().toString());
                 break;
 
             case R.id.btn3:
-                showValue.append(btn3.getText() + "");
+                showValue.append(btn3.getText().toString());
                 break;
 
             case R.id.btn4:
-                showValue.append(btn4.getText() + "");
+                showValue.append(btn4.getText().toString());
                 break;
 
             case R.id.btn5:
-                showValue.append(btn5.getText() + "");
+                showValue.append(btn5.getText().toString());
                 break;
 
             case R.id.btn6:
-                showValue.append(btn6.getText() + "");
+                showValue.append(btn6.getText().toString());
                 break;
 
             case R.id.btn7:
-                showValue.append(btn7.getText() + "");
+                showValue.append(btn7.getText().toString());
                 break;
 
             case R.id.btn8:
-                showValue.append(btn8.getText() + "");
+                showValue.append(btn8.getText().toString());
                 break;
 
             case R.id.btn9:
-                showValue.append(btn9.getText() + "");
+                showValue.append(btn9.getText().toString());
                 break;
 
             case R.id.btnDecimal:
@@ -130,13 +130,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //do nothing - prohibits additional decimals from being entered
                 }
                 else{
-                    showValue.append(btnDecimal.getText() + "");
+                    showValue.append(btnDecimal.getText().toString());
                     dec = true;
                 }
                 break;
 
             case R.id.btnDivision:
-                inputOne = Double.parseDouble(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText().toString());
                 firstInput = inputOne;
                 div = true;
                 dec = false;
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnMultiplication:
-                inputOne = Double.parseDouble(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText().toString());
                 firstInput = inputOne;
                 mul = true;
                 dec = false;
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnSubtraction:
-                inputOne = Double.parseDouble(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText().toString());
                 firstInput = inputOne;
                 sub = true;
                 dec = false;
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnAddition:
-                inputOne = Double.parseDouble(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText().toString());
                 firstInput = inputOne;
                 add = true;
                 dec = false;
@@ -178,16 +178,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnSquare:
-                inputOne = Math.sqrt(Double.parseDouble(showValue.getText() + ""));
-                showValue.setText(inputOne + "");
+                inputOne = Math.sqrt(Double.parseDouble(showValue.getText().toString()));
+                showValue.setText(decimal.format(inputOne ));
                 dec = false;
                 sin = false;
                 break;
 
             case R.id.btnPercent:
-                inputOne = Double.parseDouble(showValue.getText() + "");
+                inputOne = Double.parseDouble(showValue.getText().toString());
                 double temp = inputOne/100;
-                showValue.setText(temp + "");
+                showValue.setText(decimal.format(temp));
                 dec = false;
                 sin = false;
                 break;
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnEquals:
-                inputTwo = Double.parseDouble(showValue.getText() + "");
+                inputTwo = Double.parseDouble(showValue.getText().toString());
                 secondInput = inputTwo;
 
                 if(add){
@@ -229,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     double divSolution = (firstInput / secondInput);
                     showValue.setText(decimal.format(divSolution));
                     div = false;
+
                 }
 
                 break;

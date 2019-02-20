@@ -22,6 +22,8 @@
     <string name="_plus">+</string>
     <string name="_equals">=</string>
     <string name="input_output">Input/Output</string>
+    <string name="_0_00">0.00</string>
+    <string name="enter_digits_first_exception_sign_ex_2_2">Enter Digits First: Exception - signEx. -2 + -2</string>
 
 
 </resources>
