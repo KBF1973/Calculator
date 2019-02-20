@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.*;
 import java.text.DecimalFormat;
 import java.lang.Math;
+import java.lang.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     double inputTwo;
     double firstInput;
     double secondInput;
-    boolean add, sub, mul, div, dec, sin;
+    boolean add, sub, mul, div;
     DecimalFormat decimal;
 
     @Override
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         showValue = findViewById(R.id.inputOutput);
         decimal = new DecimalFormat("#.##########");
+        showValue.setText("0");
+
 
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
@@ -86,120 +89,164 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
 
             case R.id.btn0:
-                showValue.append(btn0.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn0.getText().toString());
+                }
+                else {
+                    showValue.append(btn0.getText().toString());
+                }
                 break;
 
             case R.id.btn1:
-                showValue.append(btn1.getText().toString());
+                if(showValue.getText().toString().equals("0")){
+                    showValue.setText(btn1.getText().toString());
+                }
+                else {
+                    showValue.append(btn1.getText().toString());
+                }
                 break;
 
             case R.id.btn2:
-                showValue.append(btn2.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn2.getText().toString());
+                }
+                else {
+                    showValue.append(btn2.getText().toString());
+                }
                 break;
 
             case R.id.btn3:
-                showValue.append(btn3.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn3.getText().toString());
+                }
+                else {
+                    showValue.append(btn3.getText().toString());
+                }
                 break;
 
             case R.id.btn4:
-                showValue.append(btn4.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn4.getText().toString());
+                }
+                else {
+                    showValue.append(btn4.getText().toString());
+                }
                 break;
 
             case R.id.btn5:
-                showValue.append(btn5.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn5.getText().toString());
+                }
+                else {
+                    showValue.append(btn5.getText().toString());
+                }
                 break;
 
             case R.id.btn6:
-                showValue.append(btn6.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn6.getText().toString());
+                }
+                else {
+                    showValue.append(btn6.getText().toString());
+                }
                 break;
 
             case R.id.btn7:
-                showValue.append(btn7.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn7.getText().toString());
+                }
+                else {
+                    showValue.append(btn7.getText().toString());
+                }
                 break;
 
             case R.id.btn8:
-                showValue.append(btn8.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn8.getText().toString());
+                }
+                else {
+                    showValue.append(btn8.getText().toString());
+                }
                 break;
 
             case R.id.btn9:
-                showValue.append(btn9.getText().toString());
+                if(showValue.getText().toString().equals("0")) {
+                    showValue.setText(btn9.getText().toString());
+                }
+                else {
+                    showValue.append(btn9.getText().toString());
+                }
                 break;
 
             case R.id.btnDecimal:
-                if(dec) {
-                    //do nothing - prohibits additional decimals from being entered
-                }
-                else{
+
+                if(!showValue.getText().toString().contains(".")){
                     showValue.append(btnDecimal.getText().toString());
-                    dec = true;
                 }
+
                 break;
 
             case R.id.btnDivision:
-                inputOne = Double.parseDouble(showValue.getText().toString());
-                firstInput = inputOne;
-                div = true;
-                dec = false;
-                sin = false;
-                showValue.setText("");
+                if(!(mul | div | add | sub)){
+                    inputOne = Double.parseDouble(showValue.getText().toString());
+                    firstInput = inputOne;
+                    div = true;
+                    showValue.setText("0");
+                 }
+
                 break;
 
             case R.id.btnMultiplication:
-                inputOne = Double.parseDouble(showValue.getText().toString());
-                firstInput = inputOne;
-                mul = true;
-                dec = false;
-                sin = false;
-                showValue.setText("");
+                if(!(mul | div | add | sub)) {
+                    inputOne = Double.parseDouble(showValue.getText().toString());
+                    firstInput = inputOne;
+                    mul = true;
+                    showValue.setText("0");
+                }
                 break;
 
             case R.id.btnSubtraction:
-                inputOne = Double.parseDouble(showValue.getText().toString());
-                firstInput = inputOne;
-                sub = true;
-                dec = false;
-                sin = false;
-                showValue.setText("");
+                if(!(mul | div | add | sub)) {
+                    inputOne = Double.parseDouble(showValue.getText().toString());
+                    firstInput = inputOne;
+                    sub = true;
+                    showValue.setText("0");
+                }
                 break;
 
             case R.id.btnAddition:
-                inputOne = Double.parseDouble(showValue.getText().toString());
-                firstInput = inputOne;
-                add = true;
-                dec = false;
-                sin = false;
-                showValue.setText("");
+                if(!(mul | div | add | sub)) {
+                    inputOne = Double.parseDouble(showValue.getText().toString());
+                    firstInput = inputOne;
+                    add = true;
+                    showValue.setText("0");
+                }
                 break;
 
             case R.id.btnClear:
-                showValue.setText("");
-                dec = false;
-                sin = false;
+                showValue.setText("0");
+                mul = false;
+                div = false;
+                sub = false;
+                add = false;
                 break;
 
             case R.id.btnSquare:
                 inputOne = Math.sqrt(Double.parseDouble(showValue.getText().toString()));
                 showValue.setText(decimal.format(inputOne ));
-                dec = false;
-                sin = false;
                 break;
 
             case R.id.btnPercent:
                 inputOne = Double.parseDouble(showValue.getText().toString());
                 double temp = inputOne/100;
                 showValue.setText(decimal.format(temp));
-                dec = false;
-                sin = false;
                 break;
 
             case R.id.btnSigned:
-
-                if(sin){
-
-                }
-                else {
-                    showValue.append("-");
-                    sin = true;
+                if(!showValue.getText().toString().equals("0")) {
+                    inputOne = Double.parseDouble(showValue.getText().toString());
+                    Double temp2 = inputOne * -1;
+                    showValue.setText(decimal.format(temp2));
                 }
                 break;
 
